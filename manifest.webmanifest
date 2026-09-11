@@ -1,0 +1,14 @@
+{
+  "name": "Dual Audio Offline",
+  "short_name": "Dual Audio",
+  "description": "Offline two-headphone audio bridge for a local video file",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0b0d10",
+  "theme_color": "#0b0d10",
+  "icons": [
+    {"src":"./icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+  ]
+}
