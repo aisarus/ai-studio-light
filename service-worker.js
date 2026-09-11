@@ -1,4 +1,4 @@
-const VERSION='dual-audio-offline-v3';
+const VERSION='dual-audio-offline-v4';
 const LOCAL=['./','./index.html','./manifest.webmanifest','./icon.svg'];
 const EXTERNAL=['https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js','https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js'];
 self.addEventListener('install',event=>{
