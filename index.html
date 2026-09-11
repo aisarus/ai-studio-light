@@ -11,7 +11,7 @@
 <link rel="apple-touch-icon" href="./icon.svg">
 <title>Dual Audio Offline</title>
 <style>
-:root{color-scheme:dark;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",Inter,system-ui,sans-serif;--bg:#0b0d10;--card:#15191f;--line:#2c333d;--text:#f7f8fa;--muted:#9da7b4;--ok:#62e4ab;--warn:#ffd166;--bad:#ff7373;--accent:#9cc1ff}*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text)}body{padding:calc(env(safe-area-inset-top) + 16px) 14px calc(env(safe-area-inset-bottom) + 28px)}main{width:min(760px,100%);margin:auto}h1{font-size:clamp(30px,9vw,52px);line-height:.95;letter-spacing:-.055em;margin:6px 0 10px}.sub{color:var(--muted);line-height:1.45}.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px;margin:12px 0}.status{display:flex;gap:9px;align-items:flex-start;line-height:1.4}.dot{flex:0 0 auto;width:10px;height:10px;border-radius:50%;margin-top:5px;background:#7c8794}.dot.ok{background:var(--ok)}.dot.warn{background:var(--warn)}.dot.bad{background:var(--bad)}button,.fileBtn,input{font:inherit}button,.fileBtn{display:block;width:100%;border:0;border-radius:15px;min-height:54px;padding:13px 15px;font-weight:800;background:#f3f5f7;color:#101216;text-align:center;cursor:pointer}.secondary{background:#242a33;color:#f4f6f8;border:1px solid #38414d}.green{background:#c9ffe5;color:#092218}.fileBtn input{display:none}button:disabled{opacity:.42}.qrWrap{background:white;border-radius:18px;padding:14px;width:min(100%,440px);margin:14px auto}.qrWrap canvas{display:block;width:100%!important;height:auto!important}.hidden{display:none!important}video.movie{display:block;width:100%;max-height:48vh;background:#000;border-radius:15px;margin-top:12px}.big{font-size:21px}.tiny{font-size:12px;color:var(--muted);line-height:1.45}.step{font-size:13px;font-weight:850;letter-spacing:.08em;color:var(--accent);margin-bottom:7px}.banner{background:#121e19;border:1px solid #28503e;color:#c9ffe5;border-radius:15px;padding:13px 14px;line-height:1.45}.warnbox{background:#211d12;border:1px solid #5a4e28;color:#ffe6a1;border-radius:15px;padding:13px 14px;line-height:1.45}.row{display:flex;gap:10px;flex-wrap:wrap}.row>*{flex:1;min-width:150px}input[type=range]{width:100%;accent-color:white}.split{display:flex;align-items:center;justify-content:space-between;gap:15px}.value{font-variant-numeric:tabular-nums;color:var(--accent)}#scanOverlay{position:fixed;inset:0;z-index:99;background:#000;display:flex;flex-direction:column}#scanVideo{width:100%;height:100%;object-fit:cover}#scanHud{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:calc(env(safe-area-inset-top) + 18px) 18px calc(env(safe-area-inset-bottom) + 18px);pointer-events:none}.scanTitle{align-self:center;background:#000b;padding:10px 14px;border-radius:999px;font-weight:800}.scanBox{position:absolute;left:12%;right:12%;top:26%;aspect-ratio:1;border:3px solid white;border-radius:26px;box-shadow:0 0 0 9999px #0005}.scanClose{pointer-events:auto;align-self:stretch}.listener{min-height:70vh;display:flex;flex-direction:column;justify-content:center}.answerQr{max-width:380px}details summary{cursor:pointer;font-weight:800}.offlineBadge{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:999px;padding:7px 10px;font-size:12px;color:var(--muted)}
+:root{color-scheme:dark;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",Inter,system-ui,sans-serif;--bg:#0b0d10;--card:#15191f;--line:#2c333d;--text:#f7f8fa;--muted:#9da7b4;--ok:#62e4ab;--warn:#ffd166;--bad:#ff7373;--accent:#9cc1ff}*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text)}body{padding:calc(env(safe-area-inset-top) + 16px) 14px calc(env(safe-area-inset-bottom) + 28px)}main{width:min(760px,100%);margin:auto}h1{font-size:clamp(30px,9vw,52px);line-height:.95;letter-spacing:-.055em;margin:6px 0 10px}.sub{color:var(--muted);line-height:1.45}.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px;margin:12px 0}.status{display:flex;gap:9px;align-items:flex-start;line-height:1.4}.dot{flex:0 0 auto;width:10px;height:10px;border-radius:50%;margin-top:5px;background:#7c8794}.dot.ok{background:var(--ok)}.dot.warn{background:var(--warn)}.dot.bad{background:var(--bad)}button,.fileBtn,input{font:inherit}button,.fileBtn{display:block;width:100%;border:0;border-radius:15px;min-height:54px;padding:13px 15px;font-weight:800;background:#f3f5f7;color:#101216;text-align:center;cursor:pointer}.secondary{background:#242a33;color:#f4f6f8;border:1px solid #38414d}.green{background:#c9ffe5;color:#092218}.fileBtn input{display:none}button:disabled{opacity:.42}.qrWrap{background:white;border-radius:18px;padding:12px;width:min(100%,520px);margin:14px auto}.qrWrap canvas{display:block;width:100%!important;height:auto!important}.hidden{display:none!important}video.movie{display:block;width:100%;max-height:48vh;background:#000;border-radius:15px;margin-top:12px}.big{font-size:21px}.tiny{font-size:12px;color:var(--muted);line-height:1.45}.step{font-size:13px;font-weight:850;letter-spacing:.08em;color:var(--accent);margin-bottom:7px}.banner{background:#121e19;border:1px solid #28503e;color:#c9ffe5;border-radius:15px;padding:13px 14px;line-height:1.45}.warnbox{background:#211d12;border:1px solid #5a4e28;color:#ffe6a1;border-radius:15px;padding:13px 14px;line-height:1.45}.row{display:flex;gap:10px;flex-wrap:wrap}.row>*{flex:1;min-width:150px}input[type=range]{width:100%;accent-color:white}.split{display:flex;align-items:center;justify-content:space-between;gap:15px}.value{font-variant-numeric:tabular-nums;color:var(--accent)}#scanOverlay{position:fixed;inset:0;z-index:99;background:#000;display:flex;flex-direction:column}#scanVideo{width:100%;height:100%;object-fit:cover}#scanHud{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:calc(env(safe-area-inset-top) + 18px) 18px calc(env(safe-area-inset-bottom) + 18px);pointer-events:none}.scanTitle{align-self:center;background:#000c;padding:10px 14px;border-radius:999px;font-weight:800;max-width:90%;text-align:center}.scanBox{position:absolute;left:7%;right:7%;top:18%;aspect-ratio:1;border:3px solid white;border-radius:26px;box-shadow:0 0 0 9999px #0004}.scanClose{pointer-events:auto;align-self:stretch}.listener{min-height:70vh;display:flex;flex-direction:column;justify-content:center}.answerQr{max-width:520px}.answerPart{text-align:center;font-weight:850;color:#111;background:#fff;padding-top:2px}.offlineBadge{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:999px;padding:7px 10px;font-size:12px;color:var(--muted)}details summary{cursor:pointer;font-weight:800}
 </style>
 </head>
 <body>
@@ -19,16 +19,11 @@
 <div id="hostApp">
   <div class="offlineBadge"><span id="offlineDot" class="dot"></span><span id="offlineText">Проверяю офлайн-кеш…</span></div>
   <h1>Dual Audio<br>Offline</h1>
-  <div class="sub">Фильм хранится только на iPad. Bose — на iPad, Sony — на телефоне. Интернет после установки не нужен.</div>
-
-  <div class="card">
-    <div class="step">ПЕРЕД ПОЛЁТОМ — ОДИН РАЗ</div>
-    <div class="status"><span class="dot ok"></span><div><b>Добавь эту страницу на экран «Домой» на обоих устройствах.</b><div class="tiny">iPad: Safari → Поделиться → На экран «Домой». Телефон: Chrome → Установить приложение / Add to Home screen. Дождись зелёного «Офлайн готов» выше.</div></div></div>
-  </div>
+  <div class="sub">Фильм только на iPad. Bose — iPad, Sony — телефон. После установки интернет не нужен.</div>
 
   <div class="card">
     <div class="step">В САМОЛЁТЕ</div>
-    <div class="banner"><b>1.</b> На телефоне включи Wi‑Fi hotspot. <b>2.</b> Подключи к нему iPad. <b>3.</b> Интернет/мобильные данные можно выключить полностью.</div>
+    <div class="banner"><b>1.</b> Телефон раздаёт Wi‑Fi hotspot. <b>2.</b> iPad подключён к hotspot. <b>3.</b> Мобильные данные можно выключить.</div>
   </div>
 
   <div class="card">
@@ -43,17 +38,19 @@
     <div id="hostStatus" class="status"><span class="dot warn"></span><span>Готовлю локальное соединение…</span></div>
     <div id="offerQr" class="qrWrap hidden"><canvas id="offerCanvas"></canvas></div>
     <button id="scanAnswer" class="green hidden">3 · СКАНИРОВАТЬ ОТВЕТ ТЕЛЕФОНА</button>
+    <label id="photoAnswerLabel" class="fileBtn secondary hidden" for="photoAnswer" style="margin-top:10px">НЕ СКАНИРУЕТ? СФОТОГРАФИРОВАТЬ QR<input id="photoAnswer" type="file" accept="image/*" capture="environment"></label>
+    <div id="partsState" class="tiny hidden" style="margin-top:10px;text-align:center">Поймано частей ответа: <b id="partsCount">0/2</b></div>
   </div>
 
   <div id="readyCard" class="card hidden">
     <div class="step">ГОТОВО</div>
-    <div class="banner big">✓ Наушники соединены. Нажимай Play на фильме.</div>
-    <div style="margin-top:15px"><div class="split"><b>Задержка наушников iPad</b><span id="delayValue" class="value">250 ms</span></div><input id="delayRange" type="range" min="0" max="1500" value="250" step="10"></div>
-    <div class="tiny">Если Bose на iPad звучат раньше Sony на телефоне — увеличивай задержку. Если позже — уменьшай.</div>
+    <div class="banner big">✓ Наушники соединены. Нажимай Play.</div>
+    <div style="margin-top:15px"><div class="split"><b>Задержка Bose на iPad</b><span id="delayValue" class="value">250 ms</span></div><input id="delayRange" type="range" min="0" max="1500" value="250" step="10"></div>
+    <div class="tiny">Если Bose звучат раньше Sony — увеличивай задержку.</div>
     <button id="wakeBtn" class="secondary" style="margin-top:12px">НЕ ГАСИТЬ ЭКРАН</button>
   </div>
 
-  <div class="card"><details><summary>Если не соединяется</summary><div class="tiny" style="margin-top:10px">Оба устройства должны быть в одной локальной Wi‑Fi сети. Самый надёжный вариант — hotspot телефона, к которому подключён iPad. Гостевой Wi‑Fi самолёта может запрещать устройствам видеть друг друга. Если QR не сканируется камерой iPad, приблизь/отдали телефон и подними яркость его экрана.</div></details></div>
+  <div class="card"><details><summary>Если QR не ловится</summary><div class="tiny" style="margin-top:10px">Телефон сам чередует QR 1/2 и 2/2. На iPad просто держи камеру на экране 2–5 секунд. Яркость телефона лучше поставить высокой. Если live-скан всё равно не ловит — нажми «Сфотографировать QR»: приложение прочитает снимок в полном разрешении. Может понадобиться снять обе чередующиеся части.</div></details></div>
 </div>
 
 <div id="listenerApp" class="hidden listener">
@@ -61,9 +58,10 @@
   <div id="listenerStatus" class="status"><span class="dot warn"></span><span>Читаю QR iPad…</span></div>
   <div id="answerBlock" class="hidden">
     <div class="card">
-      <div class="step">ПОКАЖИ ЭТОТ QR IPAD</div>
-      <div class="qrWrap answerQr"><canvas id="answerCanvas"></canvas></div>
-      <div class="tiny">На iPad нажми «Сканировать ответ телефона» и наведи камеру на этот QR.</div>
+      <div class="step">ПОКАЖИ ЭКРАН IPAD</div>
+      <div class="tiny" style="text-align:center;margin-bottom:8px">QR сам переключается между двумя частями. Ничего нажимать не надо.</div>
+      <div class="qrWrap answerQr"><canvas id="answerCanvas"></canvas><div id="answerPart" class="answerPart">ОТВЕТ 1/2</div></div>
+      <div class="tiny">На iPad нажми «Сканировать ответ телефона» и просто держи камеру на экране телефона несколько секунд.</div>
     </div>
     <button id="listenBtn" class="green">ВКЛЮЧИТЬ ЗВУК В SONY</button>
   </div>
@@ -74,7 +72,7 @@
 <div id="scanOverlay" class="hidden">
   <video id="scanVideo" playsinline muted></video>
   <canvas id="scanCanvas" class="hidden"></canvas>
-  <div id="scanHud"><div class="scanTitle">Наведи на QR телефона</div><div class="scanBox"></div><button id="closeScan" class="secondary scanClose">ОТМЕНА</button></div>
+  <div id="scanHud"><div id="scanTitle" class="scanTitle">Наведи на QR телефона · нужно поймать 2 части</div><div class="scanBox"></div><button id="closeScan" class="secondary scanClose">ОТМЕНА</button></div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
@@ -83,7 +81,8 @@
 (async()=>{
 const $=id=>document.getElementById(id);
 const BASE=location.origin+location.pathname;
-let pc=null,ctx=null,source=null,delay=null,dest=null,fileURL=null,wake=null,scanStream=null,scanRAF=0;
+let pc=null,ctx=null,source=null,delay=null,dest=null,fileURL=null,wake=null,scanStream=null,scanRAF=0,answerTimer=0;
+const answerParts={};
 
 function setHost(text,state='warn'){const el=$('hostStatus');el.querySelector('span:last-child').textContent=text;el.querySelector('.dot').className='dot '+state}
 function setListener(text,state='warn'){const el=$('listenerStatus');el.querySelector('span:last-child').textContent=text;el.querySelector('.dot').className='dot '+state}
@@ -91,20 +90,19 @@ function b64u(bytes){let s='';for(let i=0;i<bytes.length;i++)s+=String.fromCharC
 function unb64u(s){s=s.replace(/-/g,'+').replace(/_/g,'/');while(s.length%4)s+='=';const b=atob(s),a=new Uint8Array(b.length);for(let i=0;i<b.length;i++)a[i]=b.charCodeAt(i);return a}
 async function pack(obj){const raw=new TextEncoder().encode(JSON.stringify(obj));if('CompressionStream'in window){const cs=new CompressionStream('gzip');const ab=await new Response(new Blob([raw]).stream().pipeThrough(cs)).arrayBuffer();return'g'+b64u(new Uint8Array(ab))}return'j'+b64u(raw)}
 async function unpack(s){const kind=s[0];let bytes=unb64u(s.slice(1));if(kind==='g'){if(!('DecompressionStream'in window))throw new Error('Нет распаковки gzip');const ds=new DecompressionStream('gzip');const ab=await new Response(new Blob([bytes]).stream().pipeThrough(ds)).arrayBuffer();bytes=new Uint8Array(ab)}return JSON.parse(new TextDecoder().decode(bytes))}
-function waitIce(p){return new Promise(resolve=>{if(p.iceGatheringState==='complete')return resolve();const done=()=>{if(p.iceGatheringState==='complete'){p.removeEventListener('icegatheringstatechange',done);resolve()}};p.addEventListener('icegatheringstatechange',done);setTimeout(resolve,5000)})}
-function renderQR(canvas,value){new QRious({element:canvas,value,size:900,level:'L',padding:20,background:'white',foreground:'black'})}
+function waitIce(p){return new Promise(resolve=>{if(p.iceGatheringState==='complete')return resolve();const done=()=>{if(p.iceGatheringState==='complete'){p.removeEventListener('icegatheringstatechange',done);resolve()}};p.addEventListener('icegatheringstatechange',done);setTimeout(resolve,4500)})}
+function renderQR(canvas,value){new QRious({element:canvas,value,size:1100,level:'L',padding:28,background:'white',foreground:'black'})}
 function parsePayload(text,key){try{const u=new URL(text,BASE);const p=new URLSearchParams(u.hash.slice(1));return p.get(key)}catch{return null}}
 function localPC(){return new RTCPeerConnection({iceServers:[],iceTransportPolicy:'all'})}
 
 async function offlineState(){
   if(!('serviceWorker'in navigator)){ $('offlineText').textContent='Офлайн-кеш не поддерживается';return }
   try{
-    await navigator.serviceWorker.register('./service-worker.js');
-    await navigator.serviceWorker.ready;
+    await navigator.serviceWorker.register('./service-worker.js');await navigator.serviceWorker.ready;
     const need=['./index.html','./manifest.webmanifest','./icon.svg','https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js','https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js'];
     let ok=true;for(const x of need){if(!(await caches.match(x)))ok=false}
-    $('offlineDot').className='dot '+(ok?'ok':'warn');$('offlineText').textContent=ok?'ОФЛАЙН ГОТОВ ✓':'Открой страницу онлайн ещё раз для кеша';
-  }catch(e){$('offlineText').textContent='Не удалось подготовить офлайн: '+e.message}
+    $('offlineDot').className='dot '+(ok?'ok':'warn');$('offlineText').textContent=ok?'ОФЛАЙН ГОТОВ ✓':'Открой онлайн ещё раз для кеша';
+  }catch(e){$('offlineText').textContent='Офлайн-кеш: '+e.message}
 }
 offlineState();
 
@@ -116,30 +114,54 @@ async function initAudio(){
 $('fileInput').onchange=async e=>{
   const f=e.target.files?.[0];if(!f)return;if(fileURL)URL.revokeObjectURL(fileURL);fileURL=URL.createObjectURL(f);$('movie').src=fileURL;$('fileName').textContent=`${f.name} · ${(f.size/1024/1024).toFixed(0)} MB`;$('offerCard').classList.remove('hidden');
   try{
-    await initAudio();
-    if(pc)pc.close();pc=localPC();dest.stream.getTracks().forEach(t=>pc.addTrack(t,dest.stream));pc.createDataChannel('keep');
+    await initAudio();if(pc)pc.close();pc=localPC();dest.stream.getTracks().forEach(t=>pc.addTrack(t,dest.stream));
     pc.onconnectionstatechange=()=>{if(pc.connectionState==='connected'){setHost('Соединено ✓','ok');$('readyCard').classList.remove('hidden')}else if(['failed','disconnected'].includes(pc.connectionState))setHost('Связь потеряна. Проверь hotspot.','bad')};
     await pc.setLocalDescription(await pc.createOffer());await waitIce(pc);
     const payload=await pack({type:pc.localDescription.type,sdp:pc.localDescription.sdp});const url=BASE+'#o='+payload;
-    renderQR($('offerCanvas'),url);$('offerQr').classList.remove('hidden');$('scanAnswer').classList.remove('hidden');setHost('QR готов. Телефон: Камера → наведи → открой ссылку.','ok');
+    renderQR($('offerCanvas'),url);$('offerQr').classList.remove('hidden');$('scanAnswer').classList.remove('hidden');$('photoAnswerLabel').classList.remove('hidden');setHost('QR готов. Телефон: Камера → открой ссылку.','ok');
   }catch(err){setHost('Ошибка: '+err.message,'bad')}
 };
 
 $('delayRange').oninput=e=>{const ms=Number(e.target.value);$('delayValue').textContent=ms+' ms';if(delay&&ctx)delay.delayTime.setTargetAtTime(ms/1000,ctx.currentTime,.02)};
 $('wakeBtn').onclick=async()=>{try{wake=await navigator.wakeLock.request('screen');$('wakeBtn').textContent='ЭКРАН НЕ ГАСНЕТ ✓'}catch{$('wakeBtn').textContent='Wake Lock недоступен'}};
 
-async function applyAnswer(text){
-  const p=parsePayload(text,'a');if(!p)return false;const ans=await unpack(p);await pc.setRemoteDescription(ans);setHost('Ответ принят. Соединяюсь…','warn');stopScan();return true;
+function resetAnswerParts(){delete answerParts[1];delete answerParts[2];updatePartsState()}
+function updatePartsState(){const n=(answerParts[1]?1:0)+(answerParts[2]?1:0);$('partsCount').textContent=n+'/2';$('partsState').classList.toggle('hidden',n===0);$('scanTitle').textContent=n===0?'Наведи на QR телефона · нужно поймать 2 части':n===1?'Первая часть поймана ✓ · держи камеру, жду вторую':'Обе части пойманы ✓'}
+async function maybeApplyCombined(){if(!answerParts[1]||!answerParts[2])return false;const packed=answerParts[1]+answerParts[2];const ans=await unpack(packed);await pc.setRemoteDescription(ans);setHost('Ответ принят. Соединяюсь…','warn');stopScan();return true}
+async function consumeQrText(text){
+  const full=parsePayload(text,'a');if(full){const ans=await unpack(full);await pc.setRemoteDescription(ans);setHost('Ответ принят. Соединяюсь…','warn');stopScan();return true}
+  const p1=parsePayload(text,'a1'),p2=parsePayload(text,'a2');
+  if(p1&&!answerParts[1]){answerParts[1]=p1;updatePartsState()}
+  if(p2&&!answerParts[2]){answerParts[2]=p2;updatePartsState()}
+  return maybeApplyCombined()
+}
+
+async function decodeImageSource(sourceObj){
+  const canvas=$('scanCanvas'),c=canvas.getContext('2d',{willReadFrequently:true});
+  const sw=sourceObj.videoWidth||sourceObj.width,sh=sourceObj.videoHeight||sourceObj.height;if(!sw||!sh)return false;
+  const max=1600,scale=Math.min(1,max/Math.max(sw,sh)),w=Math.max(1,Math.round(sw*scale)),h=Math.max(1,Math.round(sh*scale));canvas.width=w;canvas.height=h;c.drawImage(sourceObj,0,0,w,h);
+  const img=c.getImageData(0,0,w,h);if(!window.jsQR)return false;const code=jsQR(img.data,w,h,{inversionAttempts:'attemptBoth'});if(code?.data)return consumeQrText(code.data);return false
 }
 async function startScan(){
+  resetAnswerParts();
   try{
-    $('scanOverlay').classList.remove('hidden');scanStream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'},width:{ideal:1280},height:{ideal:720}},audio:false});$('scanVideo').srcObject=scanStream;await $('scanVideo').play();
-    const canvas=$('scanCanvas'),c=canvas.getContext('2d',{willReadFrequently:true});
-    const tick=async()=>{if(!scanStream)return;const v=$('scanVideo');if(v.readyState>=2){const w=640,h=Math.round(640*v.videoHeight/v.videoWidth)||480;canvas.width=w;canvas.height=h;c.drawImage(v,0,0,w,h);const img=c.getImageData(0,0,w,h);if(window.jsQR){const code=jsQR(img.data,w,h,{inversionAttempts:'dontInvert'});if(code?.data){try{if(await applyAnswer(code.data))return}catch(e){setHost('QR ответа повреждён: '+e.message,'bad')}}}}scanRAF=requestAnimationFrame(tick)};tick();
+    $('scanOverlay').classList.remove('hidden');scanStream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'},width:{ideal:1920},height:{ideal:1080}},audio:false});$('scanVideo').srcObject=scanStream;await $('scanVideo').play();
+    let busy=false,last=0;const tick=async t=>{if(!scanStream)return;if(!busy&&t-last>180){busy=true;last=t;try{await decodeImageSource($('scanVideo'))}catch(e){}busy=false}scanRAF=requestAnimationFrame(tick)};scanRAF=requestAnimationFrame(tick);
   }catch(e){stopScan();setHost('Не удалось открыть камеру: '+e.message,'bad')}
 }
 function stopScan(){cancelAnimationFrame(scanRAF);scanRAF=0;if(scanStream){scanStream.getTracks().forEach(t=>t.stop());scanStream=null}$('scanOverlay').classList.add('hidden')}
 $('scanAnswer').onclick=startScan;$('closeScan').onclick=stopScan;
+
+$('photoAnswer').onchange=async e=>{
+  const f=e.target.files?.[0];if(!f)return;
+  try{const bmp=await createImageBitmap(f);const ok=await decodeImageSource(bmp);bmp.close?.();if(!ok)setHost('На фото QR не распознан. Поднеси ближе и сними ещё раз.','bad')}catch(err){setHost('Не удалось прочитать фото: '+err.message,'bad')}finally{e.target.value=''}
+};
+
+function startAnswerCycling(packed){
+  const mid=Math.ceil(packed.length/2),parts=[packed.slice(0,mid),packed.slice(mid)];let idx=0;
+  const draw=()=>{const key=idx===0?'a1':'a2';renderQR($('answerCanvas'),BASE+'#'+key+'='+parts[idx]);$('answerPart').textContent='ОТВЕТ '+(idx+1)+'/2';idx=1-idx};
+  clearInterval(answerTimer);draw();answerTimer=setInterval(draw,900)
+}
 
 async function listenerMode(offerPacked){
   $('hostApp').classList.add('hidden');$('listenerApp').classList.remove('hidden');
@@ -148,13 +170,13 @@ async function listenerMode(offerPacked){
     pc.ontrack=e=>{const stream=e.streams?.[0]||new MediaStream([e.track]);$('remoteAudio').srcObject=stream;$('remoteAudio').volume=1;$('remoteAudio').play().then(()=>{$('listenBtn').textContent='SONY ИГРАЮТ ✓'}).catch(()=>{})};
     pc.onconnectionstatechange=()=>{if(pc.connectionState==='connected')setListener('Соединено с iPad ✓','ok');else if(['failed','disconnected'].includes(pc.connectionState))setListener('Связь потеряна. Проверь hotspot.','bad')};
     await pc.setRemoteDescription(offer);await pc.setLocalDescription(await pc.createAnswer());await waitIce(pc);
-    const packed=await pack({type:pc.localDescription.type,sdp:pc.localDescription.sdp});renderQR($('answerCanvas'),BASE+'#a='+packed);$('answerBlock').classList.remove('hidden');setListener('Ответ готов. Покажи QR iPad.','ok');
+    const packed=await pack({type:pc.localDescription.type,sdp:pc.localDescription.sdp});startAnswerCycling(packed);$('answerBlock').classList.remove('hidden');setListener('Ответ готов. Просто покажи экран iPad.','ok');
   }catch(e){setListener('Не удалось прочитать QR: '+e.message,'bad')}
 }
 $('listenBtn').onclick=async()=>{try{await $('remoteAudio').play();$('listenBtn').textContent='SONY ИГРАЮТ ✓'}catch(e){$('listenBtn').textContent='НАЖМИ ЕЩЁ РАЗ'}};
 
 const hash=new URLSearchParams(location.hash.slice(1));const incomingOffer=hash.get('o');if(incomingOffer)listenerMode(incomingOffer);
-window.addEventListener('beforeunload',()=>{try{pc?.close();stopScan()}catch{}});
+window.addEventListener('beforeunload',()=>{try{pc?.close();stopScan();clearInterval(answerTimer)}catch{}});
 })();
 </script>
 </body>
