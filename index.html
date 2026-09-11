@@ -1,231 +1,160 @@
 <!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta name="theme-color" content="#0b0d10" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <title>Dual Audio Sync</title>
-  <style>
-    :root{color-scheme:dark;font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"SF Pro Display",system-ui,sans-serif;--bg:#0b0d10;--card:#15191f;--line:#2b313a;--text:#f6f7f9;--muted:#9ba5b3;--ok:#5ce1a5;--warn:#ffd166;--bad:#ff6b6b;--accent:#8ab4ff}
-    *{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--text);min-height:100%}body{padding:calc(env(safe-area-inset-top) + 18px) 16px calc(env(safe-area-inset-bottom) + 30px)}
-    main{width:min(820px,100%);margin:0 auto}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}h1{font-size:clamp(25px,7vw,42px);letter-spacing:-.04em;margin:0}.pill{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:7px 10px;color:var(--muted)}
-    .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin:12px 0;box-shadow:0 10px 30px #0005}.muted{color:var(--muted);line-height:1.45}.status{display:flex;gap:9px;align-items:center;font-size:14px}.dot{width:9px;height:9px;border-radius:50%;background:var(--muted);box-shadow:0 0 0 4px #ffffff0d}.dot.ok{background:var(--ok)}.dot.warn{background:var(--warn)}.dot.bad{background:var(--bad)}
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:650px){.grid{grid-template-columns:1fr}}button,.fileBtn,input{font:inherit}button,.fileBtn{min-height:50px;border:0;border-radius:14px;padding:12px 15px;font-weight:750;background:#f1f3f5;color:#0b0d10;cursor:pointer;text-align:center}.secondary{background:#222831;color:var(--text);border:1px solid #323a46}.danger{background:#3a2024;color:#ffdfe3;border:1px solid #6a3038}button:disabled{opacity:.4;cursor:not-allowed}.fileBtn{display:block}.fileBtn input{display:none}
-    input[type=text]{width:100%;min-height:50px;border:1px solid #343c47;border-radius:14px;padding:0 14px;background:#0f1216;color:var(--text);font-size:20px;letter-spacing:.14em;text-align:center}.room{font-size:42px;font-weight:850;letter-spacing:.13em;text-align:center;margin:8px 0 4px}.room small{display:block;font-size:12px;letter-spacing:.02em;color:var(--muted);font-weight:500;margin-bottom:5px}
-    video{display:block;width:100%;max-height:52vh;background:#000;border-radius:14px;margin-top:12px}.hidden{display:none!important}.row{display:flex;gap:10px;flex-wrap:wrap}.row>*{flex:1;min-width:140px}.sectionTitle{font-size:15px;font-weight:800;margin:0 0 8px}.value{font-variant-numeric:tabular-nums;color:var(--accent)}
-    input[type=range]{width:100%;accent-color:#fff}.steps{padding-left:22px;color:#dce1e7;line-height:1.55}.steps li{margin:7px 0}.fine{font-size:12px;color:var(--muted);line-height:1.4}.banner{padding:12px 14px;border-radius:14px;background:#101a16;border:1px solid #264a3b;color:#bff6da}.warnbox{padding:12px 14px;border-radius:14px;background:#201b10;border:1px solid #5b4b20;color:#ffe39a}.log{font-size:12px;white-space:pre-wrap;color:#aeb8c5;max-height:140px;overflow:auto;background:#0d1014;border-radius:12px;padding:10px}.split{display:flex;justify-content:space-between;gap:14px;align-items:center}.switcher button{min-height:40px;padding:8px 12px}.switcher .active{background:var(--text);color:#111}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b0d10">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="./icon.svg">
+<title>Dual Audio Offline</title>
+<style>
+:root{color-scheme:dark;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",Inter,system-ui,sans-serif;--bg:#0b0d10;--card:#15191f;--line:#2c333d;--text:#f7f8fa;--muted:#9da7b4;--ok:#62e4ab;--warn:#ffd166;--bad:#ff7373;--accent:#9cc1ff}*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text)}body{padding:calc(env(safe-area-inset-top) + 16px) 14px calc(env(safe-area-inset-bottom) + 28px)}main{width:min(760px,100%);margin:auto}h1{font-size:clamp(30px,9vw,52px);line-height:.95;letter-spacing:-.055em;margin:6px 0 10px}.sub{color:var(--muted);line-height:1.45}.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px;margin:12px 0}.status{display:flex;gap:9px;align-items:flex-start;line-height:1.4}.dot{flex:0 0 auto;width:10px;height:10px;border-radius:50%;margin-top:5px;background:#7c8794}.dot.ok{background:var(--ok)}.dot.warn{background:var(--warn)}.dot.bad{background:var(--bad)}button,.fileBtn,input{font:inherit}button,.fileBtn{display:block;width:100%;border:0;border-radius:15px;min-height:54px;padding:13px 15px;font-weight:800;background:#f3f5f7;color:#101216;text-align:center;cursor:pointer}.secondary{background:#242a33;color:#f4f6f8;border:1px solid #38414d}.green{background:#c9ffe5;color:#092218}.fileBtn input{display:none}button:disabled{opacity:.42}.qrWrap{background:white;border-radius:18px;padding:14px;width:min(100%,440px);margin:14px auto}.qrWrap canvas{display:block;width:100%!important;height:auto!important}.hidden{display:none!important}video.movie{display:block;width:100%;max-height:48vh;background:#000;border-radius:15px;margin-top:12px}.big{font-size:21px}.tiny{font-size:12px;color:var(--muted);line-height:1.45}.step{font-size:13px;font-weight:850;letter-spacing:.08em;color:var(--accent);margin-bottom:7px}.banner{background:#121e19;border:1px solid #28503e;color:#c9ffe5;border-radius:15px;padding:13px 14px;line-height:1.45}.warnbox{background:#211d12;border:1px solid #5a4e28;color:#ffe6a1;border-radius:15px;padding:13px 14px;line-height:1.45}.row{display:flex;gap:10px;flex-wrap:wrap}.row>*{flex:1;min-width:150px}input[type=range]{width:100%;accent-color:white}.split{display:flex;align-items:center;justify-content:space-between;gap:15px}.value{font-variant-numeric:tabular-nums;color:var(--accent)}#scanOverlay{position:fixed;inset:0;z-index:99;background:#000;display:flex;flex-direction:column}#scanVideo{width:100%;height:100%;object-fit:cover}#scanHud{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:calc(env(safe-area-inset-top) + 18px) 18px calc(env(safe-area-inset-bottom) + 18px);pointer-events:none}.scanTitle{align-self:center;background:#000b;padding:10px 14px;border-radius:999px;font-weight:800}.scanBox{position:absolute;left:12%;right:12%;top:26%;aspect-ratio:1;border:3px solid white;border-radius:26px;box-shadow:0 0 0 9999px #0005}.scanClose{pointer-events:auto;align-self:stretch}.listener{min-height:70vh;display:flex;flex-direction:column;justify-content:center}.answerQr{max-width:380px}details summary{cursor:pointer;font-weight:800}.offlineBadge{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:999px;padding:7px 10px;font-size:12px;color:var(--muted)}
+</style>
 </head>
 <body>
 <main>
-  <div class="top">
-    <div><h1>Dual Audio Sync</h1><div class="muted">Один фильм на iPad → Sony + Bose на втором устройстве</div></div>
-    <div class="pill">P2P · WebRTC</div>
+<div id="hostApp">
+  <div class="offlineBadge"><span id="offlineDot" class="dot"></span><span id="offlineText">Проверяю офлайн-кеш…</span></div>
+  <h1>Dual Audio<br>Offline</h1>
+  <div class="sub">Фильм хранится только на iPad. Bose — на iPad, Sony — на телефоне. Интернет после установки не нужен.</div>
+
+  <div class="card">
+    <div class="step">ПЕРЕД ПОЛЁТОМ — ОДИН РАЗ</div>
+    <div class="status"><span class="dot ok"></span><div><b>Добавь эту страницу на экран «Домой» на обоих устройствах.</b><div class="tiny">iPad: Safari → Поделиться → На экран «Домой». Телефон: Chrome → Установить приложение / Add to Home screen. Дождись зелёного «Офлайн готов» выше.</div></div></div>
   </div>
 
   <div class="card">
-    <div class="split">
-      <div><div class="sectionTitle">Режим</div><div class="muted">iPad с фильмом = HOST. Второй телефон = LISTEN.</div></div>
-      <div class="switcher row" style="flex-wrap:nowrap">
-        <button id="tabHost" class="active">HOST</button><button id="tabGuest" class="secondary">LISTEN</button>
-      </div>
-    </div>
-  </div>
-
-  <section id="hostPanel">
-    <div class="card">
-      <div class="sectionTitle">1. Фильм только на iPad</div>
-      <label class="fileBtn" for="fileInput">Выбрать видео из Files<input id="fileInput" type="file" accept="video/*,.mp4,.m4v,.mov" /></label>
-      <div id="fileName" class="fine" style="margin-top:9px">Файл ещё не выбран.</div>
-      <video id="video" playsinline controls preload="metadata"></video>
-    </div>
-
-    <div class="card">
-      <div class="sectionTitle">2. Запустить передачу звука</div>
-      <div id="hostStatus" class="status"><span class="dot"></span><span>Готов к запуску.</span></div>
-      <button id="hostBtn" style="width:100%;margin-top:12px" disabled>START HOST</button>
-      <div id="roomBox" class="hidden">
-        <div class="room"><small>КОД ДЛЯ ВТОРОГО УСТРОЙСТВА</small><span id="roomCode">------</span></div>
-        <div class="row"><button id="copyLink" class="secondary">Скопировать ссылку</button><button id="shareLink" class="secondary">Поделиться</button></div>
-      </div>
-    </div>
-
-    <div id="syncCard" class="card hidden">
-      <div class="sectionTitle">3. Подстройка синхронизации</div>
-      <div class="muted">WebRTC обычно приходит в Bose позже. Поэтому мы задерживаем Sony на iPad. Двигай ползунок, пока звук в обеих парах не совпадёт.</div>
-      <div style="margin-top:14px"><div class="split"><b>Задержка Sony</b><span id="delayValue" class="value">220 ms</span></div><input id="delayRange" type="range" min="0" max="1200" value="220" step="10" /></div>
-      <div class="row" style="margin-top:12px"><button id="testClicks" class="secondary">5 тестовых щелчков</button><button id="wakeBtn" class="secondary">Не гасить экран</button></div>
-      <div class="warnbox" style="margin-top:12px">Держи страницу HOST открытой во время фильма. Не блокируй iPad и не закрывай Safari.</div>
-    </div>
-  </section>
-
-  <section id="guestPanel" class="hidden">
-    <div class="card">
-      <div class="sectionTitle">1. Bose подключены к ЭТОМУ устройству</div>
-      <div class="muted">Проверь Bluetooth и отключи Bose от iPad, чтобы iPad не пытался перехватить вывод.</div>
-    </div>
-    <div class="card">
-      <div class="sectionTitle">2. Ввести код с iPad</div>
-      <input id="joinCode" type="text" inputmode="numeric" maxlength="6" placeholder="123456" autocomplete="off" />
-      <button id="joinBtn" style="width:100%;margin-top:10px">JOIN AUDIO</button>
-      <div id="guestStatus" class="status" style="margin-top:12px"><span class="dot"></span><span>Жду код.</span></div>
-      <button id="enableAudio" class="hidden" style="width:100%;margin-top:12px">ВКЛЮЧИТЬ ЗВУК В BOSE</button>
-      <audio id="remoteAudio" playsinline></audio>
-    </div>
-    <div class="card">
-      <div class="banner">Когда увидишь «Audio connected», нажми большую кнопку включения звука. На iOS это обязательный пользовательский жест.</div>
-    </div>
-  </section>
-
-  <div class="card">
-    <details>
-      <summary style="cursor:pointer;font-weight:800">Быстрая инструкция</summary>
-      <ol class="steps">
-        <li>На iPad подключи Sony. На втором телефоне подключи Bose.</li>
-        <li>На iPad сохрани фильм из Telegram в Files и открой эту страницу в Safari.</li>
-        <li>HOST → «Выбрать видео» → START HOST. Появится 6-значный код.</li>
-        <li>На втором телефоне открой эту же страницу, выбери LISTEN, введи код, нажми JOIN AUDIO.</li>
-        <li>Когда появится кнопка «ВКЛЮЧИТЬ ЗВУК В BOSE», нажми её.</li>
-        <li>Запусти фильм на iPad. Если Bose отстают, увеличивай «Задержка Sony» до совпадения.</li>
-      </ol>
-      <div class="fine">Нужен интернет в момент соединения: бесплатный PeerJS Cloud используется только для знакомства двух устройств. Сам аудиопоток после установления связи идёт WebRTC P2P, когда сеть это позволяет.</div>
-    </details>
+    <div class="step">В САМОЛЁТЕ</div>
+    <div class="banner"><b>1.</b> На телефоне включи Wi‑Fi hotspot. <b>2.</b> Подключи к нему iPad. <b>3.</b> Интернет/мобильные данные можно выключить полностью.</div>
   </div>
 
   <div class="card">
-    <details><summary style="cursor:pointer;font-weight:800">Диагностика</summary><div id="log" class="log" style="margin-top:10px">ready</div></details>
+    <div class="step">1 · IPAD</div>
+    <label class="fileBtn" for="fileInput">ВЫБРАТЬ ФИЛЬМ<input id="fileInput" type="file" accept="video/*,.mp4,.m4v,.mov"></label>
+    <div id="fileName" class="tiny" style="margin-top:9px">Файл не выбран.</div>
+    <video id="movie" class="movie" controls playsinline preload="metadata"></video>
   </div>
+
+  <div id="offerCard" class="card hidden">
+    <div class="step">2 · ПОКАЖИ QR ТЕЛЕФОНУ</div>
+    <div id="hostStatus" class="status"><span class="dot warn"></span><span>Готовлю локальное соединение…</span></div>
+    <div id="offerQr" class="qrWrap hidden"><canvas id="offerCanvas"></canvas></div>
+    <button id="scanAnswer" class="green hidden">3 · СКАНИРОВАТЬ ОТВЕТ ТЕЛЕФОНА</button>
+  </div>
+
+  <div id="readyCard" class="card hidden">
+    <div class="step">ГОТОВО</div>
+    <div class="banner big">✓ Наушники соединены. Нажимай Play на фильме.</div>
+    <div style="margin-top:15px"><div class="split"><b>Задержка наушников iPad</b><span id="delayValue" class="value">250 ms</span></div><input id="delayRange" type="range" min="0" max="1500" value="250" step="10"></div>
+    <div class="tiny">Если Bose на iPad звучат раньше Sony на телефоне — увеличивай задержку. Если позже — уменьшай.</div>
+    <button id="wakeBtn" class="secondary" style="margin-top:12px">НЕ ГАСИТЬ ЭКРАН</button>
+  </div>
+
+  <div class="card"><details><summary>Если не соединяется</summary><div class="tiny" style="margin-top:10px">Оба устройства должны быть в одной локальной Wi‑Fi сети. Самый надёжный вариант — hotspot телефона, к которому подключён iPad. Гостевой Wi‑Fi самолёта может запрещать устройствам видеть друг друга. Если QR не сканируется камерой iPad, приблизь/отдали телефон и подними яркость его экрана.</div></details></div>
+</div>
+
+<div id="listenerApp" class="hidden listener">
+  <h1>Телефон<br>слушателя</h1>
+  <div id="listenerStatus" class="status"><span class="dot warn"></span><span>Читаю QR iPad…</span></div>
+  <div id="answerBlock" class="hidden">
+    <div class="card">
+      <div class="step">ПОКАЖИ ЭТОТ QR IPAD</div>
+      <div class="qrWrap answerQr"><canvas id="answerCanvas"></canvas></div>
+      <div class="tiny">На iPad нажми «Сканировать ответ телефона» и наведи камеру на этот QR.</div>
+    </div>
+    <button id="listenBtn" class="green">ВКЛЮЧИТЬ ЗВУК В SONY</button>
+  </div>
+  <audio id="remoteAudio" playsinline></audio>
+</div>
 </main>
 
-<script src="https://unpkg.com/peerjs@1.5.5/dist/peerjs.min.js"></script>
+<div id="scanOverlay" class="hidden">
+  <video id="scanVideo" playsinline muted></video>
+  <canvas id="scanCanvas" class="hidden"></canvas>
+  <div id="scanHud"><div class="scanTitle">Наведи на QR телефона</div><div class="scanBox"></div><button id="closeScan" class="secondary scanClose">ОТМЕНА</button></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
 <script>
-(() => {
-  const $ = id => document.getElementById(id);
-  const log = (...x) => { console.log(...x); $('log').textContent += '\n' + x.map(v => typeof v === 'string' ? v : JSON.stringify(v)).join(' '); $('log').scrollTop = $('log').scrollHeight; };
-  const setStatus = (id, text, state='') => { const el=$(id); el.querySelector('span:last-child').textContent=text; const dot=el.querySelector('.dot'); dot.className='dot'+(state?' '+state:''); };
-  const qs = new URLSearchParams(location.search);
+(async()=>{
+const $=id=>document.getElementById(id);
+const BASE=location.origin+location.pathname;
+let pc=null,ctx=null,source=null,delay=null,dest=null,fileURL=null,wake=null,scanStream=null,scanRAF=0;
 
-  let peer=null, conn=null, currentCall=null, fileURL=null, wakeLock=null;
-  let ctx=null, mediaSource=null, localDelay=null, localGain=null, remoteDest=null, audioReady=false;
+function setHost(text,state='warn'){const el=$('hostStatus');el.querySelector('span:last-child').textContent=text;el.querySelector('.dot').className='dot '+state}
+function setListener(text,state='warn'){const el=$('listenerStatus');el.querySelector('span:last-child').textContent=text;el.querySelector('.dot').className='dot '+state}
+function b64u(bytes){let s='';for(let i=0;i<bytes.length;i++)s+=String.fromCharCode(bytes[i]);return btoa(s).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')}
+function unb64u(s){s=s.replace(/-/g,'+').replace(/_/g,'/');while(s.length%4)s+='=';const b=atob(s),a=new Uint8Array(b.length);for(let i=0;i<b.length;i++)a[i]=b.charCodeAt(i);return a}
+async function pack(obj){const raw=new TextEncoder().encode(JSON.stringify(obj));if('CompressionStream'in window){const cs=new CompressionStream('gzip');const ab=await new Response(new Blob([raw]).stream().pipeThrough(cs)).arrayBuffer();return'g'+b64u(new Uint8Array(ab))}return'j'+b64u(raw)}
+async function unpack(s){const kind=s[0];let bytes=unb64u(s.slice(1));if(kind==='g'){if(!('DecompressionStream'in window))throw new Error('Нет распаковки gzip');const ds=new DecompressionStream('gzip');const ab=await new Response(new Blob([bytes]).stream().pipeThrough(ds)).arrayBuffer();bytes=new Uint8Array(ab)}return JSON.parse(new TextDecoder().decode(bytes))}
+function waitIce(p){return new Promise(resolve=>{if(p.iceGatheringState==='complete')return resolve();const done=()=>{if(p.iceGatheringState==='complete'){p.removeEventListener('icegatheringstatechange',done);resolve()}};p.addEventListener('icegatheringstatechange',done);setTimeout(resolve,5000)})}
+function renderQR(canvas,value){new QRious({element:canvas,value,size:900,level:'L',padding:20,background:'white',foreground:'black'})}
+function parsePayload(text,key){try{const u=new URL(text,BASE);const p=new URLSearchParams(u.hash.slice(1));return p.get(key)}catch{return null}}
+function localPC(){return new RTCPeerConnection({iceServers:[],iceTransportPolicy:'all'})}
 
-  function showMode(mode){
-    const host=mode==='host';
-    $('hostPanel').classList.toggle('hidden',!host); $('guestPanel').classList.toggle('hidden',host);
-    $('tabHost').className=host?'active':'secondary'; $('tabGuest').className=host?'secondary':'active';
-  }
-  $('tabHost').onclick=()=>showMode('host'); $('tabGuest').onclick=()=>showMode('guest');
+async function offlineState(){
+  if(!('serviceWorker'in navigator)){ $('offlineText').textContent='Офлайн-кеш не поддерживается';return }
+  try{
+    await navigator.serviceWorker.register('./service-worker.js');
+    await navigator.serviceWorker.ready;
+    const need=['./index.html','./manifest.webmanifest','./icon.svg','https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js','https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js'];
+    let ok=true;for(const x of need){if(!(await caches.match(x)))ok=false}
+    $('offlineDot').className='dot '+(ok?'ok':'warn');$('offlineText').textContent=ok?'ОФЛАЙН ГОТОВ ✓':'Открой страницу онлайн ещё раз для кеша';
+  }catch(e){$('offlineText').textContent='Не удалось подготовить офлайн: '+e.message}
+}
+offlineState();
 
-  const preset=qs.get('join'); if(preset){ showMode('guest'); $('joinCode').value=preset.replace(/\D/g,'').slice(0,6); }
+async function initAudio(){
+  if(ctx){await ctx.resume();return}
+  const AC=window.AudioContext||window.webkitAudioContext;ctx=new AC({latencyHint:'interactive'});source=ctx.createMediaElementSource($('movie'));delay=ctx.createDelay(2);delay.delayTime.value=Number($('delayRange').value)/1000;dest=ctx.createMediaStreamDestination();source.connect(delay);delay.connect(ctx.destination);source.connect(dest);await ctx.resume();
+}
 
-  $('fileInput').addEventListener('change', e => {
-    const f=e.target.files && e.target.files[0]; if(!f) return;
-    if(fileURL) URL.revokeObjectURL(fileURL); fileURL=URL.createObjectURL(f); $('video').src=fileURL;
-    $('fileName').textContent=`${f.name} · ${(f.size/1024/1024).toFixed(0)} MB`;
-    $('hostBtn').disabled=false; setStatus('hostStatus','Файл выбран. Можно запускать HOST.','ok');
-  });
+$('fileInput').onchange=async e=>{
+  const f=e.target.files?.[0];if(!f)return;if(fileURL)URL.revokeObjectURL(fileURL);fileURL=URL.createObjectURL(f);$('movie').src=fileURL;$('fileName').textContent=`${f.name} · ${(f.size/1024/1024).toFixed(0)} MB`;$('offerCard').classList.remove('hidden');
+  try{
+    await initAudio();
+    if(pc)pc.close();pc=localPC();dest.stream.getTracks().forEach(t=>pc.addTrack(t,dest.stream));pc.createDataChannel('keep');
+    pc.onconnectionstatechange=()=>{if(pc.connectionState==='connected'){setHost('Соединено ✓','ok');$('readyCard').classList.remove('hidden')}else if(['failed','disconnected'].includes(pc.connectionState))setHost('Связь потеряна. Проверь hotspot.','bad')};
+    await pc.setLocalDescription(await pc.createOffer());await waitIce(pc);
+    const payload=await pack({type:pc.localDescription.type,sdp:pc.localDescription.sdp});const url=BASE+'#o='+payload;
+    renderQR($('offerCanvas'),url);$('offerQr').classList.remove('hidden');$('scanAnswer').classList.remove('hidden');setHost('QR готов. Телефон: Камера → наведи → открой ссылку.','ok');
+  }catch(err){setHost('Ошибка: '+err.message,'bad')}
+};
 
-  async function initAudio(){
-    if(audioReady){ await ctx.resume(); return; }
-    const AC=window.AudioContext||window.webkitAudioContext; if(!AC) throw new Error('Web Audio API недоступен');
-    ctx=new AC({latencyHint:'interactive'});
-    mediaSource=ctx.createMediaElementSource($('video'));
-    localDelay=ctx.createDelay(2.0); localDelay.delayTime.value=Number($('delayRange').value)/1000;
-    localGain=ctx.createGain(); remoteDest=ctx.createMediaStreamDestination();
-    mediaSource.connect(localDelay); localDelay.connect(localGain); localGain.connect(ctx.destination);
-    mediaSource.connect(remoteDest);
-    await ctx.resume(); audioReady=true; log('Audio graph ready', ctx.state, remoteDest.stream.id);
-  }
+$('delayRange').oninput=e=>{const ms=Number(e.target.value);$('delayValue').textContent=ms+' ms';if(delay&&ctx)delay.delayTime.setTargetAtTime(ms/1000,ctx.currentTime,.02)};
+$('wakeBtn').onclick=async()=>{try{wake=await navigator.wakeLock.request('screen');$('wakeBtn').textContent='ЭКРАН НЕ ГАСНЕТ ✓'}catch{$('wakeBtn').textContent='Wake Lock недоступен'}};
 
-  function room(){ return String(Math.floor(100000+Math.random()*900000)); }
-  async function startHost(){
-    $('hostBtn').disabled=true;
-    try{ await initAudio(); }catch(err){ setStatus('hostStatus','Ошибка аудио: '+err.message,'bad'); $('hostBtn').disabled=false; return; }
-    let code=room(); const id='dual-audio-'+code;
-    setStatus('hostStatus','Подключаю сигналинг…','warn');
-    peer=new Peer(id,{debug:1});
-    peer.on('open', () => {
-      $('roomCode').textContent=code; $('roomBox').classList.remove('hidden'); $('syncCard').classList.remove('hidden');
-      setStatus('hostStatus','HOST готов. Введи код на втором устройстве.','ok');
-      log('Host peer open',id);
-    });
-    peer.on('connection', c => {
-      conn=c; log('Data peer incoming',c.peer);
-      c.on('open',()=>{ setStatus('hostStatus','Второе устройство найдено. Отправляю аудио…','warn'); log('Data connected',c.peer); startCall(c.peer); });
-      c.on('close',()=>setStatus('hostStatus','Второе устройство отключилось.','bad'));
-    });
-    peer.on('error', err => {
-      log('Peer error',err.type,err.message);
-      if(err.type==='unavailable-id'){ setStatus('hostStatus','Код занят. Нажми START HOST ещё раз.','bad'); $('hostBtn').disabled=false; }
-      else setStatus('hostStatus','Ошибка соединения: '+(err.type||err.message),'bad');
-    });
-  }
-  function startCall(remoteId){
-    if(!remoteDest) return;
-    if(currentCall) try{currentCall.close()}catch(e){}
-    currentCall=peer.call(remoteId,remoteDest.stream,{metadata:{kind:'dual-audio'}});
-    if(!currentCall){ setStatus('hostStatus','Не удалось создать WebRTC звонок.','bad'); return; }
-    currentCall.on('close',()=>setStatus('hostStatus','Аудиоканал закрыт.','bad'));
-    currentCall.on('error',e=>{log('Call error',e); setStatus('hostStatus','Ошибка WebRTC аудио.','bad');});
-    setStatus('hostStatus','Аудиопоток отправлен. Запускай фильм.','ok');
-  }
-  $('hostBtn').onclick=startHost;
+async function applyAnswer(text){
+  const p=parsePayload(text,'a');if(!p)return false;const ans=await unpack(p);await pc.setRemoteDescription(ans);setHost('Ответ принят. Соединяюсь…','warn');stopScan();return true;
+}
+async function startScan(){
+  try{
+    $('scanOverlay').classList.remove('hidden');scanStream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'},width:{ideal:1280},height:{ideal:720}},audio:false});$('scanVideo').srcObject=scanStream;await $('scanVideo').play();
+    const canvas=$('scanCanvas'),c=canvas.getContext('2d',{willReadFrequently:true});
+    const tick=async()=>{if(!scanStream)return;const v=$('scanVideo');if(v.readyState>=2){const w=640,h=Math.round(640*v.videoHeight/v.videoWidth)||480;canvas.width=w;canvas.height=h;c.drawImage(v,0,0,w,h);const img=c.getImageData(0,0,w,h);if(window.jsQR){const code=jsQR(img.data,w,h,{inversionAttempts:'dontInvert'});if(code?.data){try{if(await applyAnswer(code.data))return}catch(e){setHost('QR ответа повреждён: '+e.message,'bad')}}}}scanRAF=requestAnimationFrame(tick)};tick();
+  }catch(e){stopScan();setHost('Не удалось открыть камеру: '+e.message,'bad')}
+}
+function stopScan(){cancelAnimationFrame(scanRAF);scanRAF=0;if(scanStream){scanStream.getTracks().forEach(t=>t.stop());scanStream=null}$('scanOverlay').classList.add('hidden')}
+$('scanAnswer').onclick=startScan;$('closeScan').onclick=stopScan;
 
-  $('delayRange').oninput=e=>{ const ms=Number(e.target.value); $('delayValue').textContent=ms+' ms'; if(localDelay&&ctx) localDelay.delayTime.setTargetAtTime(ms/1000,ctx.currentTime,.02); };
+async function listenerMode(offerPacked){
+  $('hostApp').classList.add('hidden');$('listenerApp').classList.remove('hidden');
+  try{
+    const offer=await unpack(offerPacked);pc=localPC();
+    pc.ontrack=e=>{const stream=e.streams?.[0]||new MediaStream([e.track]);$('remoteAudio').srcObject=stream;$('remoteAudio').volume=1;$('remoteAudio').play().then(()=>{$('listenBtn').textContent='SONY ИГРАЮТ ✓'}).catch(()=>{})};
+    pc.onconnectionstatechange=()=>{if(pc.connectionState==='connected')setListener('Соединено с iPad ✓','ok');else if(['failed','disconnected'].includes(pc.connectionState))setListener('Связь потеряна. Проверь hotspot.','bad')};
+    await pc.setRemoteDescription(offer);await pc.setLocalDescription(await pc.createAnswer());await waitIce(pc);
+    const packed=await pack({type:pc.localDescription.type,sdp:pc.localDescription.sdp});renderQR($('answerCanvas'),BASE+'#a='+packed);$('answerBlock').classList.remove('hidden');setListener('Ответ готов. Покажи QR iPad.','ok');
+  }catch(e){setListener('Не удалось прочитать QR: '+e.message,'bad')}
+}
+$('listenBtn').onclick=async()=>{try{await $('remoteAudio').play();$('listenBtn').textContent='SONY ИГРАЮТ ✓'}catch(e){$('listenBtn').textContent='НАЖМИ ЕЩЁ РАЗ'}};
 
-  $('testClicks').onclick=async()=>{
-    try{ await initAudio(); await ctx.resume(); }catch(e){return}
-    for(let i=0;i<5;i++){
-      const o=ctx.createOscillator(),g=ctx.createGain(); o.frequency.value=900; g.gain.value=.18;
-      o.connect(g); g.connect(localDelay); g.connect(remoteDest); const t=ctx.currentTime+i*.55; o.start(t); o.stop(t+.07);
-    }
-  };
-
-  async function requestWake(){
-    if(!('wakeLock' in navigator)){ $('wakeBtn').textContent='Wake Lock не поддерживается'; return; }
-    try{ wakeLock=await navigator.wakeLock.request('screen'); $('wakeBtn').textContent='Экран не гаснет ✓'; }catch(e){ $('wakeBtn').textContent='Не удалось включить'; log('WakeLock',e.message); }
-  }
-  $('wakeBtn').onclick=requestWake;
-
-  async function copyOrShare(share){
-    const code=$('roomCode').textContent; const url=location.origin+location.pathname+'?join='+code;
-    try{
-      if(share&&navigator.share) await navigator.share({title:'Dual Audio Sync',text:'Подключись к моему аудио',url});
-      else { await navigator.clipboard.writeText(url); $('copyLink').textContent='Скопировано ✓'; }
-    }catch(e){log('share/copy',e.message)}
-  }
-  $('copyLink').onclick=()=>copyOrShare(false); $('shareLink').onclick=()=>copyOrShare(true);
-
-  async function join(){
-    const code=$('joinCode').value.replace(/\D/g,'').slice(0,6); $('joinCode').value=code;
-    if(code.length!==6){ setStatus('guestStatus','Нужен 6-значный код.','bad'); return; }
-    $('joinBtn').disabled=true; setStatus('guestStatus','Подключаюсь…','warn');
-    peer=new Peer(undefined,{debug:1});
-    peer.on('call', call => {
-      currentCall=call; log('Incoming media call',call.peer); call.answer();
-      call.on('stream', stream => {
-        $('remoteAudio').srcObject=stream; $('enableAudio').classList.remove('hidden');
-        setStatus('guestStatus','Audio connected. Нажми кнопку звука.','ok'); log('Remote audio stream',stream.id);
-        $('remoteAudio').play().then(()=>{ $('enableAudio').textContent='BOSE ИГРАЮТ ✓'; }).catch(()=>{});
-      });
-      call.on('close',()=>setStatus('guestStatus','HOST отключился.','bad'));
-      call.on('error',e=>{log('Guest call error',e); setStatus('guestStatus','Ошибка аудиоканала.','bad');});
-    });
-    peer.on('open', id => {
-      log('Guest peer open',id); conn=peer.connect('dual-audio-'+code,{reliable:true});
-      conn.on('open',()=>{ setStatus('guestStatus','HOST найден. Жду аудио…','warn'); log('Guest data open'); });
-      conn.on('error',e=>{log('Data error',e); setStatus('guestStatus','Ошибка data channel.','bad');});
-    });
-    peer.on('error', err => { log('Guest peer error',err.type,err.message); setStatus('guestStatus',err.type==='peer-unavailable'?'HOST с таким кодом не найден.':'Ошибка: '+(err.type||err.message),'bad'); $('joinBtn').disabled=false; });
-  }
-  $('joinBtn').onclick=join;
-  $('enableAudio').onclick=async()=>{
-    try{ $('remoteAudio').volume=1; await $('remoteAudio').play(); $('enableAudio').textContent='BOSE ИГРАЮТ ✓'; setStatus('guestStatus','Готово. Звук идёт в это устройство.','ok'); }catch(e){ setStatus('guestStatus','iOS заблокировал воспроизведение. Нажми ещё раз.','bad'); log('play()',e.message); }
-  };
-
-  document.addEventListener('visibilitychange',async()=>{ if(document.visibilityState==='visible'&&ctx&&ctx.state==='suspended') try{await ctx.resume()}catch(e){} });
-  window.addEventListener('beforeunload',()=>{ try{currentCall&&currentCall.close();conn&&conn.close();peer&&peer.destroy()}catch(e){} });
+const hash=new URLSearchParams(location.hash.slice(1));const incomingOffer=hash.get('o');if(incomingOffer)listenerMode(incomingOffer);
+window.addEventListener('beforeunload',()=>{try{pc?.close();stopScan()}catch{}});
 })();
 </script>
 </body>
